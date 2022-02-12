@@ -1,0 +1,48 @@
+@extends('layouts.dashboard')
+
+@section('content')
+
+@include('admin.testimonials._page_header')
+
+<div class="container-fluid">
+	@include('shared.flash_messages')
+	
+	<div class="card">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-hover v-middle">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Usuário</th>
+							<th scope="col">Criado em</th>
+							<th scope="col"></th>
+							<th colspan="2" class="text-center">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($testimonials as $key => $testimonial)
+							<tr>
+								<th scope="row">{{ $testimonial->id }}</th>
+								<td>{{ $testimonial->user->name }}</td>
+								<td>{{ \Carbon\Carbon::parse($testimonial->created_at)->format('d/m/Y').' - '.\Carbon\Carbon::parse($testimonial->created_at)->format('H:i') }}</td>
+								<td>
+									<label class="form-switch" onchange="updateStatus(this, event)" data-token="{{ csrf_token() }}" data-controller="testimonials" data-id="{{ $testimonial->id }}">
+										<input type="checkbox" name="status" id="testimonial_{{ $testimonial->id }}" tabindex="1" {{ !$testimonial->status ? 'value=1' : 'value=0 checked' }}>
+										<i></i>
+									</label>
+								</td>
+								<td class="text-center"><button type="button" class="btn btn-info btn-sm px-3 show-item" data-toggle="modal" data-target="#modal-show" data-url="{{ route('admin.testimonials.show', $testimonial->slug) }}" data-large="true" data-title="Visualizar"><i class="fas fa-eye"></i> Visualizar</button></td>
+								<td class="text-center"><button type="button" class="btn btn-danger btn-sm px-3 delete" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('admin.testimonials.destroy', $testimonial->id) }}"><i class="fas fa-trash-alt"></i> Apagar</button></td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+				@if(!request()->get('keyword'))
+					{{ $testimonials->links('pagination::bootstrap-4') }}
+				@endif
+			</div>
+		</div>
+	</div>
+</div>
+@endsection

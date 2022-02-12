@@ -1,0 +1,6 @@
+<ul class="list-group list-group-flush mb-4 border rounded">
+	<a href="{{ route('users.edit') }}" class="list-group-item {{ request()->segment(count(request()->segments())) == 'dados-pessoais' ? 'active' : NULL }}"><i class="fas fa-info-circle fa-fw"></i> Dados Pessoais</a>
+	<a href="{{ route('users.edit_password') }}" class="list-group-item {{ request()->segment(count(request()->segments())) == 'alterar-senha' ? 'active' : NULL }}"><i class="fas fa-key fa-fw"></i> Alterar Senha</a>
+	<a href="{{ route('pets.index') }}" class="list-group-item {{ request()->segment(count(request()->segments())) == 'pets' || request()->segment(count(request()->segments()) - 1) == 'pets' || request()->segment(count(request()->segments())) == 'imagens' || request()->segment(count(request()->segments()) - 1) == 'imagens' ? 'active' : NULL }}"><i class="fas fa-paw fa-fw"></i> Pets</a>
+	<a href="{{ route('testimonials.index') }}" class="list-group-item {{ request()->segment(count(request()->segments())) == 'depoimentos' || request()->segment(count(request()->segments()) - 1) == 'depoimentos' ? 'active' : NULL }}"><i class="fas fa-comments fa-fw"></i> Depoimentos</a>
+</ul>

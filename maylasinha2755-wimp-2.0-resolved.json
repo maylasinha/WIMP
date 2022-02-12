@@ -1,0 +1,1690 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "WIMP",
+    "description": "Uma API crida para a divulgação de animais desaparecidos",
+    "contact": {
+      "name": "Mayla Queiroz",
+      "email": "maylacq@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://www.tldrlegal.com/l/mit"
+    },
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "https://app.swaggerhub.com/apis/maylasinha/WIMP/1.0",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "usuários"
+        ],
+        "summary": "Criar um novo usuário",
+        "description": "Através dessa operação é criado um novo usuário no sistema.",
+        "operationId": "novoUsuario",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuarios"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário cadastrado com sucesso no sistema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuarios"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Serviço Indisponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "usuários"
+        ],
+        "summary": "Consulta Usuários",
+        "description": "Ao utilizar esta operação será consultado o usuário",
+        "operationId": "consultaUsuarios",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuarios"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dados informados não encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "usuários"
+        ],
+        "summary": "Alterar usuário cadastrado",
+        "description": "Através dessa operação podemos alterar as informações do usuário.",
+        "operationId": "atualizaUsuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador único do usuário",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto que contém as informações do usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuarios"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Informações de cadastro alteradas com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaBase"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "usuários"
+        ],
+        "summary": "Excluir usuário por id",
+        "description": "Apagar usuário",
+        "operationId": "ApagueUsuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador único do usuário",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Usuário apagado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaBase"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets": {
+      "post": {
+        "tags": [
+          "pets"
+        ],
+        "summary": "Criar um novo pet",
+        "description": "Através dessa operação é criado um novo pet no sistema.",
+        "operationId": "novoPet",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pets"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pet cadastrado com sucesso no sistema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pets"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Serviço Indisponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/pets/{id}": {
+      "get": {
+        "tags": [
+          "pets"
+        ],
+        "summary": "Consulta Pets",
+        "description": "Ao utilizar esta operação será consultado o pet",
+        "operationId": "consultaPets",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pets"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dados informados não encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "pets"
+        ],
+        "summary": "Alterar pet cadastrado",
+        "description": "Através dessa operação podemos alterar as informações do pet.",
+        "operationId": "atualizaPet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador único do pet",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto que contém as informações do pet",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pets"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Informações de cadastro alteradas com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaBase"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "pets"
+        ],
+        "summary": "Excluir pet por id",
+        "description": "Apagar pet",
+        "operationId": "apagaPet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador único do pet",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet apagado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaBase"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/depositions": {
+      "post": {
+        "tags": [
+          "depositions"
+        ],
+        "summary": "Criar um novo depoimento/comentário",
+        "description": "Através dessa operação é criado um novo depoimento/comentário no sistema.",
+        "operationId": "novoDepoimento",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/depositions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Depoimento/Comentário criado com sucesso no sistema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/depositions"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Serviço Indisponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/depositions/{id}": {
+      "get": {
+        "tags": [
+          "depositions"
+        ],
+        "summary": "Consulta Depoimento/Comentário",
+        "description": "Ao utilizar esta operação será consultado o depoimento/comentário",
+        "operationId": "consultaDepoimento",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/depositions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dados informados não encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "depositions"
+        ],
+        "summary": "Alterar depoimento/comentário cadastrado",
+        "description": "Através dessa operação podemos alterar os depoimentos/comentários do usuário.",
+        "operationId": "atualizaDepoimento",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador único do depoimento",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto que contém as informações do depoimento/comentário do usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/depositions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Informações de depoimento/comentário alterados com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaBase"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "depositions"
+        ],
+        "summary": "Excluir depoimento/comentário por id",
+        "description": "Apagar depoimento/comentário",
+        "operationId": "apagaDepoimento",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador único do depoimento/comentário do usuário",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Depoimento/Comentário apagado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaBase"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Petphoto/{Pet_id}": {
+      "put": {
+        "tags": [
+          "petphoto"
+        ],
+        "summary": "Alterar imagem do pet",
+        "description": "Através dessa operação podemos alterar a foto do pet.",
+        "operationId": "atualizaFotoPet",
+        "parameters": [
+          {
+            "name": "Pet_id",
+            "in": "path",
+            "description": "Identificador único da foto do pet",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto que contém as informações da foto do pet",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Petphoto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Foto alterada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaBase"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição Inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "petphoto"
+        ],
+        "summary": "Adiciona Foto",
+        "description": "Ao utilizar esta operação será adicionado uma foto do pet",
+        "operationId": "adicionaFoto",
+        "parameters": [
+          {
+            "name": "Pet_id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Petphoto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Proibido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dados informados não encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno - servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Serviço indiponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalhesProblemas"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuarios": {
+        "title": "Usuarios",
+        "required": [
+          "Email",
+          "Password",
+          "Username"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "Name": {
+            "type": "string",
+            "example": "Maria Aparecida de Jesus"
+          },
+          "Username": {
+            "type": "string",
+            "example": "maria@exemplo.com"
+          },
+          "Password": {
+            "type": "string",
+            "format": "password"
+          },
+          "Email": {
+            "type": "string",
+            "format": "email",
+            "example": "maria@exemplo.com"
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Active": {
+            "type": "boolean",
+            "example": true
+          },
+          "LastLogin": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Endereco": {
+            "type": "string",
+            "example": "Rua da Esperança, n°04 Bairro João Dias"
+          },
+          "CEP": {
+            "type": "string",
+            "example": "78064-986"
+          },
+          "Cidade": {
+            "type": "string",
+            "example": "Belo Horizonte"
+          },
+          "UF": {
+            "type": "string",
+            "example": "MG"
+          },
+          "Telefone": {
+            "type": "string",
+            "example": "(11) 99659-9856"
+          }
+        }
+      },
+      "Pets": {
+        "title": "Pets",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "NomePet": {
+            "type": "string",
+            "example": "Brutus"
+          },
+          "DataPerdido": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "PetTipo_id": {
+            "type": "integer",
+            "example": 2
+          },
+          "Sexo_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "Porte_id": {
+            "type": "integer",
+            "example": 3
+          },
+          "Raca": {
+            "type": "string",
+            "example": "PitBul"
+          },
+          "Complemento": {
+            "type": "string",
+            "example": "Uma mancha no olho esquerdo"
+          },
+          "Users_id": {
+            "type": "integer",
+            "example": 4
+          },
+          "Encontrado": {
+            "type": "boolean",
+            "example": true
+          },
+          "DataEncontrado": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RespostaBase": {
+        "title": "RespostaBase",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "DetalhesProblemas": {
+        "title": "DetalhesProblemas",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "depositions": {
+        "title": "Depoimento",
+        "required": [
+          "Pet_id",
+          "Users_id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "Pet_id": {
+            "type": "integer",
+            "example": 34
+          },
+          "Users_id": {
+            "type": "integer",
+            "example": 12
+          },
+          "Comentario": {
+            "type": "string",
+            "example": "Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator."
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": ""
+      },
+      "Auditoria": {
+        "title": "Auditoria",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "Tabela": {
+            "type": "string",
+            "example": "Usuarios"
+          },
+          "CreatedBy": {
+            "type": "integer",
+            "example": 3
+          },
+          "UpdateBy": {
+            "type": "integer",
+            "example": 3
+          },
+          "UpdateOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Acao": {
+            "type": "string",
+            "example": "atualizar cadastro"
+          }
+        }
+      },
+      "Permissoes": {
+        "title": "Permissoes",
+        "required": [
+          "PermissoesTipo_id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "PermissoesTipo_id": {
+            "type": "integer",
+            "example": 2
+          },
+          "Ler": {
+            "type": "boolean"
+          },
+          "Criar": {
+            "type": "boolean"
+          },
+          "Editar": {
+            "type": "boolean"
+          },
+          "Deletar": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PermissoesTipo": {
+        "title": "PermissoesTipo",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "Tipo": {
+            "type": "string",
+            "example": "Gerente"
+          }
+        }
+      },
+      "PetPorte": {
+        "title": "PetPorte",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "Porte": {
+            "type": "string",
+            "example": "médio"
+          }
+        }
+      },
+      "PetSexo": {
+        "title": "PetSexo",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "Tipo": {
+            "type": "string",
+            "example": "Macho"
+          }
+        }
+      },
+      "PetTipo": {
+        "title": "PetTipo",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "Tipo": {
+            "type": "string",
+            "example": "Cachorro"
+          }
+        }
+      },
+      "Petphoto": {
+        "title": "Petphoto",
+        "type": "object",
+        "properties": {
+          "Pet_id": {
+            "type": "integer",
+            "example": 2
+          },
+          "Nome": {
+            "type": "string",
+            "example": "cachorro"
+          },
+          "Tipo": {
+            "type": "string",
+            "example": "jpg"
+          },
+          "Foto": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      }
+    },
+    "examples": {}
+  }
+}
